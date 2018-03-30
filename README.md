@@ -8,7 +8,10 @@ Design of the block is inspired by Stephen Fewer's [block_api](https://github.co
 
 One of the main objectives while designing iat_api was bypassing exploit mitigation techniques used inside EMET, Windows Defender and similar security products. Using import address table(IAT) entries instead of export address table(EAT) makes it possible to find API addresses without reading the KERNEL32/NTDLL and KERNELBASE therefore bypasses the EMET's Export Address Filtering(EAF) and Export Address Filtering Plus(EAF+) mitigations. Also after finding the wanted API addresses iat_api makes a CALL to the API instead of jumping or returning inside it therefore bypasses EMET's caller checks. Changing the rotation value used for calculating the function name hash may help bypassing anti virus products that are using ROR13 hashes as signature detection.
 
-<strong>IMPORTANT !!</strong> The function that is called with iat_api must be imported by the PE file or it will crash.
+<strong>IMPORTANT !!</strong> 
+- The function that is called with iat_api must be imported by the PE file or it will crash.
+- Target process must not use ASLR or else iat_block couldn't find the import table address.
+
 
 ## Example
 
