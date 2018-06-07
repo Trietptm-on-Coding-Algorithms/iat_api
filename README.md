@@ -10,7 +10,7 @@ One of the main objectives while designing iat_api was bypassing exploit mitigat
 
 <strong>IMPORTANT !!</strong> 
 - The function that is called with iat_api must be imported by the PE file or it will crash.
-- Target process must not use ASLR or else iat_block couldn't find the import table address.
+- Currently it can only be run inside 32 bit processes.
 
 
 ## Example
